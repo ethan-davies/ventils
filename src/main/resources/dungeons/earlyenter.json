@@ -1,0 +1,76 @@
+[
+  {
+    "id": "mid",
+    "label": "At MID!",
+    "shape": "sphere",
+    "phase": 0,
+    "expectedClasses": [],
+    "x": 54.5,
+    "y": 65,
+    "z": 76.5,
+    "radius": 8
+  },
+  {
+    "id": "ss",
+    "label": "At SS!",
+    "shape": "box",
+    "phase": 0,
+    "expectedClasses": ["Healer"],
+    "min": [107, 120, 93],
+    "max": [109, 121, 95]
+  },
+  {
+    "id": "low_ee2",
+    "label": "At Low EE2!",
+    "shape": "box",
+    "phase": 0,
+    "expectedClasses": ["Mage"],
+    "min": [57, 109, 130],
+    "max": [59, 110, 132]
+  },
+  {
+    "id": "high_ee2",
+    "label": "At High EE2!",
+    "shape": "box",
+    "phase": 0,
+    "expectedClasses": ["Healer"],
+    "min": [57, 132, 138],
+    "max": [62, 133, 140]
+  },
+  {
+    "id": "low_ee3",
+    "label": "At Low EE3!",
+    "shape": "box",
+    "phase": 1,
+    "expectedClasses": ["Berserk"],
+    "min": [1, 109, 98],
+    "max": [3, 110, 103]
+  },
+  {
+    "id": "high_ee3",
+    "label": "At High EE3!",
+    "shape": "box",
+    "phase": 1,
+    "expectedClasses": ["Berserk"],
+    "min": [18, 121, 91],
+    "max": [19, 122, 94]
+  },
+  {
+    "id": "core",
+    "label": "In Core!",
+    "shape": "box",
+    "phase": 3,
+    "expectedClasses": ["Mage"],
+    "min": [50, 113, 55],
+    "max": [59, 117, 59]
+  },
+  {
+    "id": "outside_core",
+    "label": "Outside Core!",
+    "shape": "box",
+    "phase": 3,
+    "expectedClasses": [],
+    "min": [51, 113, 51],
+    "max": [58, 117, 54]
+  }
+]

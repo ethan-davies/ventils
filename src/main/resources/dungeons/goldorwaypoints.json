@@ -1,0 +1,483 @@
+[
+  {
+    "kind": "device",
+    "phase": 0,
+    "name": "SS",
+    "pos": [
+      110,
+      121,
+      91
+    ],
+    "assignments": [
+      {
+        "class": "Healer",
+        "required": true
+      }
+    ]
+  },
+  {
+    "kind": "terminal",
+    "phase": 0,
+    "name": "Terminal #1",
+    "pos": [
+      111,
+      113,
+      73
+    ],
+    "assignments": [
+      {
+        "class": "Tank",
+        "required": true
+      }
+    ]
+  },
+  {
+    "kind": "terminal",
+    "phase": 0,
+    "name": "Terminal #2",
+    "pos": [
+      111,
+      119,
+      79
+    ],
+    "assignments": [
+      {
+        "class": "Tank",
+        "required": true
+      }
+    ]
+  },
+  {
+    "kind": "terminal",
+    "phase": 0,
+    "name": "Terminal #3",
+    "pos": [
+      89,
+      112,
+      92
+    ],
+    "assignments": [
+      {
+        "class": "Archer",
+        "required": true
+      }
+    ]
+  },
+  {
+    "kind": "terminal",
+    "phase": 0,
+    "name": "Terminal #4",
+    "pos": [
+      89,
+      122,
+      101
+    ],
+    "assignments": [
+      {
+        "class": "Archer",
+        "required": true
+      }
+    ]
+  },
+  {
+    "kind": "lever",
+    "phase": 0,
+    "name": "Left Lever",
+    "pos": [
+      106,
+      124,
+      113
+    ],
+    "assignments": [
+      {
+        "class": "Mage",
+        "required": true
+      }
+    ]
+  },
+  {
+    "kind": "lever",
+    "phase": 0,
+    "name": "Right Lever",
+    "pos": [
+      94,
+      124,
+      113
+    ],
+    "assignments": [
+      {
+        "class": "Mage",
+        "required": true
+      }
+    ]
+  },
+  {
+    "kind": "device",
+    "phase": 1,
+    "name": "Device",
+    "pos": [
+      60,
+      132,
+      143
+    ],
+    "assignments": []
+  },
+  {
+    "kind": "terminal",
+    "phase": 1,
+    "name": "Terminal #1",
+    "pos": [
+      68,
+      109,
+      121
+    ],
+    "assignments": [
+      {
+        "class": "Tank",
+        "required": true
+      }
+    ]
+  },
+  {
+    "kind": "terminal",
+    "phase": 1,
+    "name": "Terminal #2",
+    "pos": [
+      59,
+      120,
+      122
+    ],
+    "assignments": [
+      {
+        "class": "Mage",
+        "required": true
+      }
+    ]
+  },
+  {
+    "kind": "terminal",
+    "phase": 1,
+    "name": "Terminal #3",
+    "pos": [
+      47,
+      109,
+      121
+    ],
+    "assignments": [
+      {
+        "class": "Berserk",
+        "required": true
+      }
+    ]
+  },
+  {
+    "kind": "terminal",
+    "phase": 1,
+    "name": "Terminal #4",
+    "pos": [
+      40,
+      124,
+      122
+    ],
+    "assignments": [
+      {
+        "class": "Archer",
+        "required": true
+      }
+    ]
+  },
+  {
+    "kind": "terminal",
+    "phase": 1,
+    "name": "Terminal #5",
+    "pos": [
+      39,
+      108,
+      143
+    ],
+    "assignments": [
+      {
+        "class": "Berserk",
+        "required": true
+      }
+    ]
+  },
+  {
+    "kind": "lever",
+    "phase": 1,
+    "name": "High Lever",
+    "pos": [
+      27,
+      124,
+      127
+    ],
+    "assignments": [
+      {
+        "class": "Healer",
+        "required": true
+      }
+    ]
+  },
+  {
+    "kind": "lever",
+    "phase": 1,
+    "name": "Right Lever",
+    "pos": [
+      23,
+      132,
+      138
+    ],
+    "assignments": []
+  },
+  {
+    "kind": "device",
+    "phase": 2,
+    "name": "Device",
+    "pos": [
+      0,
+      120,
+      77
+    ],
+    "assignments": [
+      {
+        "class": "Berserk",
+        "required": true
+      },
+      {
+        "class": "Healer",
+        "required": true
+      }
+    ]
+  },
+  {
+    "kind": "terminal",
+    "phase": 2,
+    "name": "Terminal #1",
+    "pos": [
+      -3,
+      109,
+      112
+    ],
+    "assignments": [
+      {
+        "class": "Tank",
+        "required": true
+      }
+    ]
+  },
+  {
+    "kind": "terminal",
+    "phase": 2,
+    "name": "Terminal #2",
+    "pos": [
+      -3,
+      119,
+      93
+    ],
+    "assignments": [
+      {
+        "class": "Healer",
+        "required": true
+      }
+    ]
+  },
+  {
+    "kind": "terminal",
+    "phase": 2,
+    "name": "Terminal #3",
+    "pos": [
+      19,
+      123,
+      93
+    ],
+    "assignments": [
+      {
+        "class": "Berserk",
+        "required": true
+      }
+    ]
+  },
+  {
+    "kind": "terminal",
+    "phase": 2,
+    "name": "Terminal #4",
+    "pos": [
+      -3,
+      109,
+      77
+    ],
+    "assignments": [
+      {
+        "class": "Archer",
+        "required": true
+      }
+    ]
+  },
+  {
+    "kind": "lever",
+    "phase": 2,
+    "name": "Left Lever",
+    "pos": [
+      14,
+      122,
+      55
+    ],
+    "assignments": [
+      {
+        "class": "Archer",
+        "required": true
+      },
+      {
+        "class": "Tank",
+        "required": true,
+        "stack": true
+      }
+    ]
+  },
+  {
+    "kind": "lever",
+    "phase": 2,
+    "name": "Right Lever",
+    "pos": [
+      2,
+      122,
+      55
+    ],
+    "assignments": [
+      {
+        "class": "Archer",
+        "required": true
+      },
+      {
+        "class": "Tank",
+        "required": true,
+        "stack": true
+      }
+    ]
+  },
+  {
+    "kind": "device",
+    "phase": 3,
+    "name": "Device",
+    "pos": [
+      63,
+      127,
+      35
+    ],
+    "assignments": []
+  },
+  {
+    "kind": "terminal",
+    "phase": 3,
+    "name": "Terminal #1",
+    "pos": [
+      41,
+      109,
+      29
+    ],
+    "assignments": [
+      {
+        "class": "Tank",
+        "required": true
+      }
+    ]
+  },
+  {
+    "kind": "terminal",
+    "phase": 3,
+    "name": "Terminal #2",
+    "pos": [
+      44,
+      121,
+      29
+    ],
+    "assignments": [
+      {
+        "class": "Archer",
+        "required": true
+      }
+    ]
+  },
+  {
+    "kind": "terminal",
+    "phase": 3,
+    "name": "Terminal #3",
+    "pos": [
+      67,
+      109,
+      29
+    ],
+    "assignments": [
+      {
+        "class": "Berserk",
+        "required": true
+      }
+    ]
+  },
+  {
+    "kind": "terminal",
+    "phase": 3,
+    "name": "Terminal #4",
+    "pos": [
+      72,
+      115,
+      48
+    ],
+    "assignments": [
+      {
+        "class": "Healer",
+        "required": true
+      }
+    ]
+  },
+  {
+    "kind": "lever",
+    "phase": 3,
+    "name": "Bottom Lever",
+    "pos": [
+      86,
+      128,
+      46
+    ],
+    "assignments": [
+      {
+        "class": "Berserk",
+        "required": true
+      },
+      {
+        "class": "Healer",
+        "required": false,
+        "stack": true,
+        "condition": {
+          "type": "objective_incomplete",
+          "objective": "Bottom Lever"
+        }
+      }
+    ]
+  },
+  {
+    "kind": "lever",
+    "phase": 3,
+    "name": "Top Lever",
+    "pos": [
+      84,
+      121,
+      34
+    ],
+    "assignments": [
+      {
+        "class": "Berserk",
+        "required": true
+      },
+      {
+        "class": "Healer",
+        "required": false,
+        "stack": true,
+        "condition": {
+          "type": "objective_incomplete",
+          "objective": "Top Lever"
+        }
+      }
+    ]
+  }
+]

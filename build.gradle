@@ -1,0 +1,99 @@
+plugins {
+	id 'net.fabricmc.fabric-loom' version "${loom_version}"
+	id 'com.gradleup.shadow' version "${shadow_version}"
+	id 'maven-publish'
+}
+
+repositories {
+	maven {
+		name = 'NotEnoughUpdates'
+		url = 'https://maven.notenoughupdates.org/releases/'
+	}
+}
+
+def shadowModImpl = configurations.create('shadowModImpl')
+configurations.implementation.extendsFrom(shadowModImpl)
+
+loom {
+	accessWidenerPath = file('src/main/resources/ventils.accesswidener')
+}
+
+dependencies {
+	minecraft "com.mojang:minecraft:${project.minecraft_version}"
+	implementation "net.fabricmc:fabric-loader:${project.loader_version}"
+	implementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_api_version}"
+	implementation "net.fabricmc:fabric-language-kotlin:${project.fabric_kotlin_version}"
+	add('shadowModImpl', "org.notenoughupdates.moulconfig:modern-26.2:${project.moulconfig_version}")
+}
+
+processResources {
+	def version = project.version
+	inputs.property 'version', version
+
+	filesMatching('fabric.mod.json') {
+		expand 'version': version
+	}
+}
+
+tasks.withType(JavaCompile).configureEach {
+	it.options.release = 25
+}
+
+java {
+	withSourcesJar()
+	sourceCompatibility = JavaVersion.VERSION_25
+	targetCompatibility = JavaVersion.VERSION_25
+}
+
+jar {
+	archiveClassifier.set('dev')
+	def projectName = project.name
+	inputs.property 'projectName', projectName
+
+	from('LICENSE') {
+		rename { "${it}_$projectName" }
+	}
+}
+
+shadowJar {
+	configurations = [shadowModImpl]
+	archiveClassifier.set('')
+	duplicatesStrategy = DuplicatesStrategy.INCLUDE
+	mergeServiceFiles()
+	relocate 'io.github.notenoughupdates.moulconfig', 'dev.ethann.ventils.deps.moulconfig'
+
+	filesMatching('fabric.mod.json') {
+		duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+	}
+	filesMatching('*.mixins.json') {
+		duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+	}
+	filesMatching('*.accesswidener') {
+		duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+	}
+
+	exclude 'META-INF/jars/**'
+	exclude 'META-INF/*.SF'
+	exclude 'META-INF/*.DSA'
+	exclude 'META-INF/*.RSA'
+
+	def projectName = project.name
+	from('LICENSE') {
+		rename { "${it}_$projectName" }
+	}
+}
+
+tasks.named('assemble') {
+	dependsOn tasks.named('shadowJar')
+}
+
+publishing {
+	publications {
+		create('mavenJava', MavenPublication) {
+			from components.java
+		}
+	}
+
+	repositories {
+	}
+}
