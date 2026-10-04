@@ -44,6 +44,6 @@ public final class PlatformHighlight extends WorldRenderFeature {
 	}
 
 	private static PlatformHighlightCategory config() {
-		return Ventils.CONFIG.getInstance().dungeons.platformHighlight;
+		return Ventils.CONFIG.getInstance().dungeons.f7m7.platformHighlight;
 	}
 }

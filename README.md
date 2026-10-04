@@ -15,7 +15,7 @@ A Hypixel Skyblock client mod for Minecraft 26.1.2 (Fabric).
 ./gradlew build
 ```
 
-The installable jar is `build/libs/ventils-0.1.0.jar`.
+The installable jar is `build/libs/ventils-1.1.0.jar`.
 
 ## Run
 

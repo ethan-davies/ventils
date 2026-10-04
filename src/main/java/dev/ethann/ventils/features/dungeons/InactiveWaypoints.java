@@ -477,7 +477,7 @@ public final class InactiveWaypoints extends HudFeature implements TickListener,
 	}
 
 	private static F7RolesCategory roles() {
-		return Ventils.CONFIG.getInstance().dungeons.f7Roles;
+		return Ventils.CONFIG.getInstance().dungeons.f7m7.f7Roles;
 	}
 
 	private static DungeonsCategory dungeons() {

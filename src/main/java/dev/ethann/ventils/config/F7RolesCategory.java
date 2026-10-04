@@ -34,7 +34,7 @@ public class F7RolesCategory {
 	@ConfigEditorBoolean
 	public boolean termInfoHud = true;
 
-	@ConfigOption(name = "Edit Term Info HUD", desc = "Opens a drag editor. Right-click resets.")
+	@ConfigOption(name = "Edit Term Info HUD", desc = "Opens a drag editor. Scroll to scale. Right-click resets.")
 	@ConfigEditorButton(buttonText = "Edit")
 	public Runnable editTermInfoHud = () -> HudEditorScreen.open(InactiveWaypoints.INSTANCE.hud());
 
@@ -43,4 +43,7 @@ public class F7RolesCategory {
 
 	@Expose
 	public int termInfoY = 10;
+
+	@Expose
+	public float termInfoScale = 1f;
 }

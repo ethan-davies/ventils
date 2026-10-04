@@ -3,6 +3,7 @@ package dev.ethann.ventils;
 import dev.ethann.ventils.command.VentilsCommands;
 import dev.ethann.ventils.config.VentilsConfig;
 import dev.ethann.ventils.features.FeatureRegistry;
+import dev.ethann.ventils.features.dailies.DailyTasksHelper;
 import dev.ethann.ventils.features.dungeons.BossDeathTitles;
 import dev.ethann.ventils.features.dungeons.DungeonClassFeature;
 import dev.ethann.ventils.features.dungeons.EarlyEnterHelper;
@@ -33,6 +34,7 @@ public class Ventils implements ClientModInitializer {
 		);
 		VentilsCommands.register();
 		FeatureRegistry.register(
+			DailyTasksHelper.INSTANCE,
 			DungeonClassFeature.INSTANCE,
 			InactiveWaypoints.INSTANCE,
 			EarlyEnterHelper.INSTANCE,

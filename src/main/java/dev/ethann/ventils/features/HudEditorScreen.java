@@ -13,6 +13,7 @@ public final class HudEditorScreen extends Screen {
 	private final Hud hud;
 	private int hudX;
 	private int hudY;
+	private float hudScale;
 	private boolean dragging;
 	private double dragOffsetX;
 	private double dragOffsetY;
@@ -23,6 +24,7 @@ public final class HudEditorScreen extends Screen {
 		this.hud = hud;
 		this.hudX = hud.x();
 		this.hudY = hud.y();
+		this.hudScale = hud.scale();
 	}
 
 	public static boolean isEditing(Hud hud) {
@@ -41,8 +43,8 @@ public final class HudEditorScreen extends Screen {
 	@Override
 	public void extractRenderState(GuiGraphicsExtractor graphics, int mouseX, int mouseY, float delta) {
 		super.extractRenderState(graphics, mouseX, mouseY, delta);
-		hud.render(graphics, font, hudX, hudY, true);
-		graphics.centeredText(font, "Right Click To Reset Position", width / 2, height / 2, Color.GRAY.getRGB());
+		hud.renderScaled(graphics, font, hudX, hudY, hudScale, true);
+		graphics.centeredText(font, "Scroll To Scale - Right Click To Reset", width / 2, height / 2, Color.GRAY.getRGB());
 	}
 
 	@Override
@@ -50,6 +52,7 @@ public final class HudEditorScreen extends Screen {
 		if (click.button() == InputConstants.MOUSE_BUTTON_RIGHT) {
 			hudX = hud.defaultX();
 			hudY = hud.defaultY();
+			hudScale = hud.defaultScale();
 			return true;
 		}
 		if (click.button() == InputConstants.MOUSE_BUTTON_LEFT && hitboxContains(click.x(), click.y())) {
@@ -64,13 +67,24 @@ public final class HudEditorScreen extends Screen {
 	@Override
 	public boolean mouseDragged(MouseButtonEvent click, double offsetX, double offsetY) {
 		if (dragging && click.button() == InputConstants.MOUSE_BUTTON_LEFT) {
-			int hudWidth = hud.width(font, true);
-			int hudHeight = hud.height(true);
+			int hudWidth = scaledWidth();
+			int hudHeight = scaledHeight();
 			hudX = (int) Math.clamp(click.x() - dragOffsetX, 0, Math.max(0, width - hudWidth));
 			hudY = (int) Math.clamp(click.y() - dragOffsetY, 0, Math.max(0, height - hudHeight));
 			return true;
 		}
 		return super.mouseDragged(click, offsetX, offsetY);
+	}
+
+	@Override
+	public boolean mouseScrolled(double mouseX, double mouseY, double scrollX, double scrollY) {
+		if (scrollY == 0 || !hitboxContains(mouseX, mouseY)) {
+			return super.mouseScrolled(mouseX, mouseY, scrollX, scrollY);
+		}
+		float direction = scrollY > 0 ? 1f : -1f;
+		float next = Math.round((hudScale + direction * Hud.SCALE_STEP) * 10f) / 10f;
+		hudScale = Math.clamp(next, Hud.MIN_SCALE, Hud.MAX_SCALE);
+		return true;
 	}
 
 	@Override
@@ -82,6 +96,7 @@ public final class HudEditorScreen extends Screen {
 	@Override
 	public void onClose() {
 		hud.savePosition(hudX, hudY);
+		hud.saveScale(hudScale);
 		if (minecraft != null) {
 			minecraft.gui.setScreen(parent);
 		}
@@ -93,8 +108,14 @@ public final class HudEditorScreen extends Screen {
 	}
 
 	private boolean hitboxContains(double mouseX, double mouseY) {
-		int hudWidth = hud.width(font, true);
-		int hudHeight = hud.height(true);
-		return mouseX >= hudX && mouseX <= hudX + hudWidth && mouseY >= hudY && mouseY <= hudY + hudHeight;
+		return mouseX >= hudX && mouseX <= hudX + scaledWidth() && mouseY >= hudY && mouseY <= hudY + scaledHeight();
+	}
+
+	private int scaledWidth() {
+		return Math.max(1, Math.round(hud.width(font, true) * hudScale));
+	}
+
+	private int scaledHeight() {
+		return Math.max(1, Math.round(hud.height(true) * hudScale));
 	}
 }

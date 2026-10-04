@@ -61,6 +61,17 @@ public final class PlayerPositionsHud extends Hud {
 	}
 
 	@Override
+	public float scale() {
+		return config().hudScale;
+	}
+
+	@Override
+	public void saveScale(float scale) {
+		config().hudScale = scale;
+		Ventils.CONFIG.saveToFile();
+	}
+
+	@Override
 	public void render(GuiGraphicsExtractor graphics, Font font, int x, int y, boolean example) {
 		drawLines(graphics, font, x, y, lines(example));
 	}
@@ -80,6 +91,6 @@ public final class PlayerPositionsHud extends Hud {
 	}
 
 	private static EarlyEnterCategory config() {
-		return Ventils.CONFIG.getInstance().dungeons.earlyEnter;
+		return Ventils.CONFIG.getInstance().dungeons.f7m7.earlyEnter;
 	}
 }

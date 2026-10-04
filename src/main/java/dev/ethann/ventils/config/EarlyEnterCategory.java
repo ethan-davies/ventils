@@ -25,7 +25,7 @@ public class EarlyEnterCategory {
 	@ConfigEditorText
 	public String leapReminderText = "&dLeap to {class}";
 
-	@ConfigOption(name = "Edit Player Positions HUD", desc = "Opens a drag editor. Right-click resets.")
+	@ConfigOption(name = "Edit Player Positions HUD", desc = "Opens a drag editor. Scroll to scale. Right-click resets.")
 	@ConfigEditorButton(buttonText = "Edit")
 	public Runnable editHud = () -> HudEditorScreen.open(EarlyEnterHelper.INSTANCE.hud());
 
@@ -39,6 +39,9 @@ public class EarlyEnterCategory {
 
 	@Expose
 	public int hudY = 60;
+
+	@Expose
+	public float hudScale = 1f;
 
 	public boolean zoneEnabled(String id) {
 		return zones.enabled(id);

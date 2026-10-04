@@ -74,6 +74,17 @@ public final class TermInfoHud extends Hud {
 	}
 
 	@Override
+	public float scale() {
+		return config().termInfoScale;
+	}
+
+	@Override
+	public void saveScale(float scale) {
+		config().termInfoScale = scale;
+		Ventils.CONFIG.saveToFile();
+	}
+
+	@Override
 	public void render(GuiGraphicsExtractor graphics, Font font, int x, int y, boolean example) {
 		drawLines(graphics, font, x, y, lines(example));
 	}
@@ -110,6 +121,6 @@ public final class TermInfoHud extends Hud {
 	}
 
 	private static F7RolesCategory config() {
-		return Ventils.CONFIG.getInstance().dungeons.f7Roles;
+		return Ventils.CONFIG.getInstance().dungeons.f7m7.f7Roles;
 	}
 }

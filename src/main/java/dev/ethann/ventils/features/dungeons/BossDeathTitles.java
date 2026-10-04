@@ -94,7 +94,7 @@ public final class BossDeathTitles extends ChatFeature {
 	}
 
 	private static BossDeathTitlesCategory config() {
-		return Ventils.CONFIG.getInstance().dungeons.bossDeathTitles;
+		return Ventils.CONFIG.getInstance().dungeons.f7m7.bossDeathTitles;
 	}
 
 	private static Predicate<String> exact(String... messages) {

@@ -19,22 +19,6 @@ public class DungeonsCategory {
 	public boolean autoDetectClass = true;
 
 	@Expose
-	@Category(name = "F7/M7 Roles", desc = "Terminal, device and lever helpers for Goldor.")
-	public F7RolesCategory f7Roles = new F7RolesCategory();
-
-	@Expose
-	@Category(name = "Boss Death Titles", desc = "F7/M7 titles for wither deaths and related events.")
-	public BossDeathTitlesCategory bossDeathTitles = new BossDeathTitlesCategory();
-
-	@Expose
-	@Category(name = "Platform Highlight", desc = "Highlights the F7/M7 Necron platform.")
-	public PlatformHighlightCategory platformHighlight = new PlatformHighlightCategory();
-
-	@Expose
-	@Category(name = "Early Enter Helper", desc = "Shows the first player in F7/M7 early-enter zones.")
-	public EarlyEnterCategory earlyEnter = new EarlyEnterCategory();
-
-	@Expose
-	@Category(name = "Leap Messages", desc = "Party chat and boxes for F7/M7 early-enter zones.")
-	public LeapMessagesCategory leapMessages = new LeapMessagesCategory();
+	@Category(name = "F7/M7", desc = "Floor 7 and Master Mode floor 7 features.")
+	public F7M7Category f7m7 = new F7M7Category();
 }

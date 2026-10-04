@@ -384,7 +384,7 @@ public final class EarlyEnterHelper extends HudFeature implements TickListener, 
 	}
 
 	private static EarlyEnterCategory config() {
-		return Ventils.CONFIG.getInstance().dungeons.earlyEnter;
+		return Ventils.CONFIG.getInstance().dungeons.f7m7.earlyEnter;
 	}
 
 	private record Occupant(String name, EarlyEnterZone zone) {

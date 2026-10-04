@@ -40,7 +40,7 @@ public final class RenderDebug {
 		Minecraft mc = Minecraft.getInstance();
 		String name = mc.player == null ? "Player" : mc.player.getGameProfile().name();
 		Titles.show(TextUtils.leapTitle(
-			Ventils.CONFIG.getInstance().dungeons.earlyEnter.leapReminderText,
+			Ventils.CONFIG.getInstance().dungeons.f7m7.earlyEnter.leapReminderText,
 			name
 		));
 		tell(mc, "Debug title: Leap to " + name);
@@ -75,11 +75,11 @@ public final class RenderDebug {
 	}
 
 	private static Color leapBoxColor() {
-		return Ventils.CONFIG.getInstance().dungeons.leapMessages.boxes.color.getEffectiveColour();
+		return Ventils.CONFIG.getInstance().dungeons.f7m7.leapMessages.boxes.color.getEffectiveColour();
 	}
 
 	private static boolean leapBoxFill() {
-		return Ventils.CONFIG.getInstance().dungeons.leapMessages.boxes.fill;
+		return Ventils.CONFIG.getInstance().dungeons.f7m7.leapMessages.boxes.fill;
 	}
 
 	private static void tell(Minecraft mc, String message) {

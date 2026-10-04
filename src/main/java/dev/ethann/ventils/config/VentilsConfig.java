@@ -7,6 +7,10 @@ import io.github.notenoughupdates.moulconfig.common.text.StructuredText;
 
 public class VentilsConfig extends Config {
 	@Expose
+	@Category(name = "General", desc = "General settings.")
+	public GeneralCategory general = new GeneralCategory();
+
+	@Expose
 	@Category(name = "Dungeons", desc = "Hypixel Skyblock dungeon features.")
 	public DungeonsCategory dungeons = new DungeonsCategory();
 

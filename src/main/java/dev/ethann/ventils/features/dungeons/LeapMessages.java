@@ -120,6 +120,6 @@ public final class LeapMessages extends TickFeature implements SessionListener, 
 	}
 
 	private static LeapMessagesCategory config() {
-		return Ventils.CONFIG.getInstance().dungeons.leapMessages;
+		return Ventils.CONFIG.getInstance().dungeons.f7m7.leapMessages;
 	}
 }
