@@ -20,7 +20,8 @@ public final class DailyTasksHelper extends HudFeature {
 	private static final String TITLE = "§e§lDaily Tasks";
 	static final String RESET_LABEL = "[Reset]";
 	static final String COMPLETE_ALL_LABEL = "[Complete All]";
-	private static final String ACTIONS = "§c" + RESET_LABEL + " §a" + COMPLETE_ALL_LABEL;
+	static final String SHOW_LABEL = "[Show]";
+	static final String HIDE_LABEL = "[Hide]";
 
 	private final DailyTasksHud hud = new DailyTasksHud();
 
@@ -63,36 +64,69 @@ public final class DailyTasksHelper extends HudFeature {
 			return List.of(new Line(TITLE, null, false), new Line("§7No tasks selected", null, false));
 		}
 
+		if (!example && collapsed()) {
+			if (!inventory) {
+				return List.of();
+			}
+			return List.of(new Line(TITLE, null, false), new Line(actions(true), null, true));
+		}
+
 		List<Line> rows = new ArrayList<>();
 		rows.add(new Line(TITLE, null, false));
 		List<DailyTask> done = completed();
 		int shown = 0;
 		for (DailyTask task : selected) {
-			if (task == null || (!example && done.contains(task))) {
+			if (task == null) {
 				continue;
 			}
-			rows.add(new Line("§f" + task, task, false));
+			if (inventory) {
+				rows.add(new Line((done.contains(task) ? "§a" : "§c") + task, task, false));
+			} else if (example || !done.contains(task)) {
+				rows.add(new Line("§f" + task, task, false));
+			} else {
+				continue;
+			}
 			shown++;
 		}
 		if (inventory) {
-			rows.add(new Line(ACTIONS, null, true));
+			rows.add(new Line(actions(false), null, true));
 		} else if (shown == 0) {
 			return List.of();
 		}
 		return rows;
 	}
 
-	public void complete(DailyTask task) {
+	public boolean collapsed() {
+		return config().collapsed;
+	}
+
+	public void toggleCollapsed() {
+		config().collapsed = !config().collapsed;
+		Ventils.CONFIG.saveToFile();
+	}
+
+	public boolean isDone(DailyTask task) {
+		return task != null && completed().contains(task);
+	}
+
+	public void toggle(DailyTask task) {
 		if (task == null) {
 			return;
 		}
 		rollDay();
 		List<DailyTask> done = completed();
-		if (!done.contains(task)) {
+		if (!done.remove(task)) {
 			done.add(task);
 		}
 		config().completedDay = today();
 		Ventils.CONFIG.saveToFile();
+	}
+
+	private static String actions(boolean collapsed) {
+		if (collapsed) {
+			return "§7" + SHOW_LABEL;
+		}
+		return "§c" + RESET_LABEL + " §a" + COMPLETE_ALL_LABEL + " §7" + HIDE_LABEL;
 	}
 
 	public void reset() {

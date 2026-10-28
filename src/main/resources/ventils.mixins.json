@@ -3,6 +3,9 @@
 	"package": "dev.ethann.ventils.mixins",
 	"compatibilityLevel": "JAVA_25",
 	"client": [
+		"FontMixin",
+		"GuiGraphicsExtractorMixin",
+		"HudMixin"
 	],
 	"injectors": {
 		"defaultRequire": 1

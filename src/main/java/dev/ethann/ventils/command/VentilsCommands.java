@@ -2,8 +2,6 @@ package dev.ethann.ventils.command;
 
 import com.mojang.brigadier.tree.LiteralCommandNode;
 import dev.ethann.ventils.Ventils;
-import dev.ethann.ventils.features.HudEditorScreen;
-import dev.ethann.ventils.features.dungeons.InactiveWaypoints;
 import dev.ethann.ventils.render.RenderDebug;
 import net.fabricmc.fabric.api.client.command.v2.ClientCommandRegistrationCallback;
 import net.fabricmc.fabric.api.client.command.v2.ClientCommands;
@@ -22,10 +20,6 @@ public final class VentilsCommands {
 						Minecraft.getInstance().schedule(Ventils.CONFIG::openConfigGui);
 						return 0;
 					})
-					.then(ClientCommands.literal("hud").executes(context -> {
-						HudEditorScreen.open(null, InactiveWaypoints.INSTANCE.hud());
-						return 0;
-					}))
 					.then(ClientCommands.literal("debug")
 						.executes(context -> RenderDebug.toggleAtPlayer())
 						.then(ClientCommands.literal("title").executes(context -> RenderDebug.showTitle()))

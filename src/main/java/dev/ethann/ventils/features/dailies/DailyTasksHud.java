@@ -123,7 +123,8 @@ public final class DailyTasksHud extends Hud {
 		switch (hit.kind()) {
 			case RESET -> DailyTasksHelper.INSTANCE.reset();
 			case COMPLETE_ALL -> DailyTasksHelper.INSTANCE.completeAll();
-			case TASK -> DailyTasksHelper.INSTANCE.complete(hit.task());
+			case TOGGLE_LIST -> DailyTasksHelper.INSTANCE.toggleCollapsed();
+			case TASK -> DailyTasksHelper.INSTANCE.toggle(hit.task());
 		}
 		return true;
 	}
@@ -148,15 +149,27 @@ public final class DailyTasksHud extends Hud {
 				continue;
 			}
 			if (row.actions()) {
-				float resetWidth = font.width(DailyTasksHelper.RESET_LABEL) * scale;
 				float gap = font.width(" ") * scale;
+				if (DailyTasksHelper.INSTANCE.collapsed()) {
+					float showWidth = font.width(DailyTasksHelper.SHOW_LABEL) * scale;
+					if (mouseX >= left && mouseX <= left + showWidth) {
+						return new Hit(Kind.TOGGLE_LIST, null);
+					}
+					return null;
+				}
+				float resetWidth = font.width(DailyTasksHelper.RESET_LABEL) * scale;
 				float completeLeft = left + resetWidth + gap;
 				float completeWidth = font.width(DailyTasksHelper.COMPLETE_ALL_LABEL) * scale;
+				float hideLeft = completeLeft + completeWidth + gap;
+				float hideWidth = font.width(DailyTasksHelper.HIDE_LABEL) * scale;
 				if (mouseX >= left && mouseX <= left + resetWidth) {
 					return new Hit(Kind.RESET, null);
 				}
 				if (mouseX >= completeLeft && mouseX <= completeLeft + completeWidth) {
 					return new Hit(Kind.COMPLETE_ALL, null);
+				}
+				if (mouseX >= hideLeft && mouseX <= hideLeft + hideWidth) {
+					return new Hit(Kind.TOGGLE_LIST, null);
 				}
 				return null;
 			}
@@ -172,23 +185,33 @@ public final class DailyTasksHud extends Hud {
 		return switch (hit.kind()) {
 			case RESET -> List.of(
 				Component.literal("Reset").withStyle(ChatFormatting.RED),
-				Component.literal("Click to show today's tasks again").withStyle(ChatFormatting.GRAY)
+				Component.literal("Click to mark every task incomplete").withStyle(ChatFormatting.GRAY)
 			);
 			case COMPLETE_ALL -> List.of(
 				Component.literal("Complete All").withStyle(ChatFormatting.GREEN),
-				Component.literal("Click to hide every task for today").withStyle(ChatFormatting.GRAY)
+				Component.literal("Click to mark every task done").withStyle(ChatFormatting.GRAY)
 			);
-			case TASK -> List.of(
-				Component.literal(hit.task().toString()),
-				Component.literal("Click to hide this task for today").withStyle(ChatFormatting.GRAY)
+			case TOGGLE_LIST -> List.of(
+				Component.literal(DailyTasksHelper.INSTANCE.collapsed() ? "Show" : "Hide").withStyle(ChatFormatting.GRAY),
+				Component.literal(DailyTasksHelper.INSTANCE.collapsed()
+					? "Click to show the task list"
+					: "Click to hide the task list").withStyle(ChatFormatting.GRAY)
 			);
+			case TASK -> {
+				boolean done = DailyTasksHelper.INSTANCE.isDone(hit.task());
+				yield List.of(
+					Component.literal(hit.task().toString()).withStyle(done ? ChatFormatting.GREEN : ChatFormatting.RED),
+					Component.literal(done ? "Click to mark incomplete" : "Click to mark done").withStyle(ChatFormatting.GRAY)
+				);
+			}
 		};
 	}
 
 	private enum Kind {
 		TASK,
 		RESET,
-		COMPLETE_ALL
+		COMPLETE_ALL,
+		TOGGLE_LIST
 	}
 
 	private record Hit(Kind kind, DailyTask task) {

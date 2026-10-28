@@ -41,4 +41,7 @@ public class DailyTasksCategory {
 
 	@Expose
 	public String completedDay = "";
+
+	@Expose
+	public boolean collapsed = false;
 }

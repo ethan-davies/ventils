@@ -14,6 +14,10 @@ public class VentilsConfig extends Config {
 	@Category(name = "Dungeons", desc = "Hypixel Skyblock dungeon features.")
 	public DungeonsCategory dungeons = new DungeonsCategory();
 
+	@Expose
+	@Category(name = "Cosmetics", desc = "Client-side cosmetics.")
+	public CosmeticsCategory cosmetics = new CosmeticsCategory();
+
 	@Override
 	public StructuredText getTitle() {
 		return StructuredText.of("Ventils").aqua();

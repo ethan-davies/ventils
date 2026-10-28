@@ -22,8 +22,8 @@ dependencies {
 	minecraft "com.mojang:minecraft:${project.minecraft_version}"
 	implementation "net.fabricmc:fabric-loader:${project.loader_version}"
 	implementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_api_version}"
-	implementation "net.fabricmc:fabric-language-kotlin:${project.fabric_kotlin_version}"
 	add('shadowModImpl', "org.notenoughupdates.moulconfig:modern-26.2:${project.moulconfig_version}")
+	add('shadowModImpl', "org.jetbrains.kotlin:kotlin-stdlib:${project.kotlin_version}")
 }
 
 processResources {
